@@ -1,0 +1,30 @@
+version: '2'
+
+networks:
+  agria:
+
+services:
+  nginx:
+    build: nginx
+    container_name: agria.nginx
+    networks:
+      - agria
+    ports:
+      - 80:80
+      - 3004:3004
+    volumes:
+      - ../agria:/var/www/agria:cached
+    restart: always
+  agria:
+    build: agria/php-fpm
+    container_name: agria.php
+    networks:
+      - agria
+    ports:
+      - "9002:9002"
+    volumes:
+      - ../agria:/var/www/agria:cached
+    extra_hosts:
+      - "docker.host:127.0.0.1"
+      - "agria.dev:172.31.177.183"
+    restart: always
