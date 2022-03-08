@@ -26,5 +26,6 @@ services:
       - ../agria:/var/www/agria:cached
     extra_hosts:
       - "docker.host:127.0.0.1"
-      - "agria.dev:172.31.177.183"
+      - "agria.dev:172.28.99.59"
+      - "host.docker.internal:host-gateway"
     restart: always
